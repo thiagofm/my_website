@@ -7,8 +7,14 @@ defmodule ApplicationRouterTest do
   # need to set the @endpoint to the router under test.
   @endpoint ApplicationRouter
 
-  test "returns OK" do
+  test "it loads static html page" do
     conn = get("/")
     assert conn.status == 200
+  end
+
+  test "reads posts" do
+    conn = get("/api/posts.json")
+    assert conn.status == 200
+    assert conn.resp_body == "{}"
   end
 end

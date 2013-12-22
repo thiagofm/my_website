@@ -13,7 +13,10 @@ defmodule ApplicationRouter do
   # forward "/posts", to: PostsRouter
 
   get "/" do
-    conn = conn.assign(:title, "Welcome to Dynamo!")
     render conn, "index.html"
+  end
+
+  get "/api/posts.json" do
+    conn.resp 200, JSON.generate []
   end
 end

@@ -11,10 +11,4 @@ defmodule ApplicationRouterTest do
     conn = get("/")
     assert conn.status == 200
   end
-
-  test "reads posts" do
-    conn = get("/api/posts.json")
-    assert conn.status == 200
-    assert conn.resp_body == "{}"
-  end
 end

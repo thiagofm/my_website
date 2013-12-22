@@ -12,11 +12,9 @@ defmodule ApplicationRouter do
   # routers, forwarding the requests between them:
   # forward "/posts", to: PostsRouter
 
+  forward "/api/posts", to: PostsRouter
+
   get "/" do
     render conn, "index.html"
-  end
-
-  get "/api/posts.json" do
-    conn.resp 200, JSON.generate []
   end
 end

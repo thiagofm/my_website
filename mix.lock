@@ -6,4 +6,6 @@
   "hackney": {:git, "git://github.com/benoitc/hackney.git", "9f08643d86480f19125eb02d8bbb610b4d82ad6a", []},
   "mimetypes": {:git, "git://github.com/spawngrid/mimetypes.git", "47d37a977a7d633199822bf6b08353007483d00f", []},
   "poolboy": {:git, "git://github.com/devinus/poolboy.git", "c2c939b51aba06790ca51fa78b14c254a6ea977d", []},
+  "postgresx": {:git, "git://github.com/ericmj/postgrex.git", "a412bf917b291a69d945b89eab1cea2cdedc3faa", []},
+  "postgrex": {:git, "git://github.com/ericmj/postgrex.git", "a412bf917b291a69d945b89eab1cea2cdedc3faa", []},
   "ranch": {:git, "git://github.com/extend/ranch.git", "5df1f222f94e08abdcab7084f5e13027143cc222", [{:ref, "0.9.0"}]} ]

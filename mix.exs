@@ -19,6 +19,7 @@ defmodule MyWebsite.Mixfile do
   defp deps do
     [ { :cowboy, github: "extend/cowboy" },
       { :ecto, github: "elixir-lang/ecto" },
+      { :postgrex, github: "ericmj/postgrex" },
       { :dynamo, "~> 0.1.0-dev", github: "elixir-lang/dynamo" },
       { :exjson, git: "https://github.com/guedes/exjson.git" }]
   end

@@ -6,6 +6,7 @@ defmodule PostsRouter do
   end
 
   get "/" do
-    conn.resp 200, JSON.generate []
+    # insert into post (title, comment) VALUES ('Hello world', 'Yeah!');
+    conn.resp 200, JSON.generate(PostQueries.all)
   end
 end

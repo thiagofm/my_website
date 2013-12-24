@@ -17,6 +17,8 @@ defmodule PostsRouterTest do
 
     # Make req
     conn = get("/")
+
+    # Respose is right?
     parsedJson = JSON.parse(conn.resp_body)
     assert Enum.at(parsedJson, 0)["comment"] == "World"
     assert Enum.at(parsedJson, 0)["title"] == "Hello"
@@ -24,9 +26,16 @@ defmodule PostsRouterTest do
   end
 
   test "it creates posts" do
-    conn = Dynamo.Connection.Test.new(:POST, "/", "key1=value1&key2=value2")
-    conn = process(PostsRouter, conn, :POST, "/")
-    assert conn.resp_body == ""
+    # Make req
+    conn = Dynamo.Connection.Test.new(:POST, "/", "title=Foo&comment=Bar")
+    conn = PostsRouter.service(conn)
+
+    # Response is right?
     assert conn.status == 201
+    assert conn.resp_body == ""
+
+    # Post is created
+    assert Enum.at(PostQueries.all, 0)[:title] == "Foo"
+    assert Enum.at(PostQueries.all, 0)[:comment] == "Bar"
   end
 end

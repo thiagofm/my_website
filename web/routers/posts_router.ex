@@ -3,7 +3,6 @@ defmodule PostsRouter do
 
   prepare do
     conn.fetch([:cookies, :params])
-    conn = conn.resp_content_type("application/json")
   end
 
   get "/" do

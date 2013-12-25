@@ -38,4 +38,40 @@ defmodule PostsRouterTest do
     assert Enum.at(PostQueries.all, 0)[:title] == "Foo"
     assert Enum.at(PostQueries.all, 0)[:comment] == "Bar"
   end
+
+  test "it updates posts" do
+    # Create post
+    post = Post.new(title: "Hello", comment: "World")
+    post = Repository.create(post)
+
+    # Make req
+    conn = Dynamo.Connection.Test.new(:PUT, "/#{post.id}", "title=Foo&comment=Bar")
+    conn = PostsRouter.service(conn)
+
+    # Response is right?
+    assert conn.status == 204
+    assert conn.resp_body == ""
+
+    # Post is updated
+    assert Enum.at(PostQueries.all, 0)[:title] == "Foo"
+    assert Enum.at(PostQueries.all, 0)[:comment] == "Bar"
+  end
+
+  test "it deletes posts" do
+    # Create post
+    post = Post.new(title: "Hello", comment: "World")
+    post = Repository.create(post)
+
+    # Make req
+    conn = Dynamo.Connection.Test.new(:DELETE, "/#{post.id}")
+    conn = PostsRouter.service(conn)
+    
+    # Response is right?
+    assert conn.status == 204
+    assert conn.resp_body == ""
+
+    # Post is deleted
+    post = Repository.get Post, post.id
+    assert post == nil
+  end
 end

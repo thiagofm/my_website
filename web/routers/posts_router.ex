@@ -15,4 +15,23 @@ defmodule PostsRouter do
 
     conn.resp 201, ""
   end
+
+  put "/:id" do
+    post = Repository.get Post, conn.params[:id]
+
+    post = post.title(conn.params[:title])
+    post = post.comment(conn.params[:comment])
+
+    Repository.update(post)
+
+    conn.resp 204, ""
+  end
+
+  delete "/:id" do
+    post = Repository.get Post, conn.params[:id]
+
+    Repository.delete(post)
+
+    conn.resp 204, ""
+  end
 end
